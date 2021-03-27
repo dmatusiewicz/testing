@@ -19,26 +19,14 @@ func (c *Container) add(i asset) {
 	c.assets = append(c.assets, i)
 }
 
-func (c *Container) list() []asset {
+func (c *Container) showAllAssets() []asset {
 	var assets []asset
 	for _, j := range c.assets {
-		switch j.(type) {
-		case *Container:
-			{
-				x := j.(*Container).list()
-				for _, jj := range x {
-					assets = append(assets, jj)
-				}
-				assets = append(assets, j)
-			}
-		default:
-			{
-				assets = append(assets, j)
-			}
+		for _, jj := range j.showAllAssets() {
+			assets = append(assets, jj)
 		}
-
 	}
-
+	assets = append(assets, c)
 	return assets
 }
 

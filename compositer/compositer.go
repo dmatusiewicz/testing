@@ -9,13 +9,13 @@ func Run() {
 	chargerContainer.add(charger)
 	phoneContainer := Container{name: "Phone box", value: 1}
 	phoneContainer.add(phone)
-	box := Container{}
+	box := Container{name: "Box above all"}
 	box.add(&chargerContainer)
 	box.add(&phoneContainer)
 	box.add(&Item{name: "Invoice"})
 	fmt.Printf("Box value %d$\n", box.calculateValue())
 
-	for _, j := range box.list() {
+	for _, j := range box.showAllAssets() {
 		s, v := j.show()
 		fmt.Printf("- \"%s\" of value %d$\n", s, v)
 	}
