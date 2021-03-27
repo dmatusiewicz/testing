@@ -1,42 +1,47 @@
 package compositer
 
 type Container struct {
-	items      []Item
-	containers []Container
-	value      int
+	assets []asset
+	value  int
+	name   string
 }
 
-func (c Container) calculateValue() int {
-	c.value = 0
-	for _, j := range c.items {
-		c.value += j.calculateValue()
+func (c *Container) calculateValue() int {
+	var calculatedValue int
+	calculatedValue += c.value
+	for _, j := range c.assets {
+		calculatedValue += j.calculateValue()
 	}
-	for _, j := range c.containers {
-		c.value += j.calculateValue()
-	}
-	return c.value
+	return calculatedValue
 }
 
-func (c *Container) addItem(i Item) {
-	c.items = append(c.items, i)
+func (c *Container) add(i asset) {
+	c.assets = append(c.assets, i)
 }
 
-func (c *Container) addContainer(cont Container) {
-	c.containers = append(c.containers, cont)
-}
-
-func (c *Container) getContent() []Item {
-	var content []Item
-
-	for _, j := range c.items {
-		content = append(content, j)
-	}
-
-	for _, j := range c.containers {
-		for _, jj := range j.getContent() {
-			content = append(content, jj)
+func (c *Container) list() []asset {
+	var assets []asset
+	for _, j := range c.assets {
+		switch j.(type) {
+		case *Container:
+			{
+				x := j.(*Container).list()
+				for _, jj := range x {
+					assets = append(assets, jj)
+				}
+				assets = append(assets, j)
+			}
+		default:
+			{
+				assets = append(assets, j)
+			}
 		}
+
 	}
 
-	return content
+	return assets
+}
+
+func (c *Container) show() (name string, value int) {
+	return c.name, c.value
 }

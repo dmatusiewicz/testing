@@ -1,5 +1,6 @@
 package compositer
 
-type assetReport interface {
-	calculateValue()
+type asset interface {
+	calculateValue() int
+	show() (name string, value int)
 }

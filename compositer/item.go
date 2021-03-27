@@ -1,10 +1,14 @@
 package compositer
 
 type Item struct {
-	Name  string
-	Value int
+	name  string
+	value int
 }
 
 func (i Item) calculateValue() int {
-	return i.Value
+	return i.value
+}
+
+func (i Item) show() (name string, value int) {
+	return i.name, i.value
 }
