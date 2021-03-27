@@ -5,6 +5,7 @@ import (
 
 	"github.com/dmatusiewicz/testing/adapter"
 	"github.com/dmatusiewicz/testing/bridger"
+	"github.com/dmatusiewicz/testing/compositer"
 	"github.com/dmatusiewicz/testing/heaper"
 )
 
@@ -14,4 +15,6 @@ func main() {
 	adapter.Run()
 	fmt.Println()
 	bridger.Run()
+	fmt.Println()
+	compositer.Run()
 }
