@@ -7,6 +7,7 @@ import (
 	"github.com/dmatusiewicz/testing/bridger"
 	"github.com/dmatusiewicz/testing/compositer"
 	"github.com/dmatusiewicz/testing/decorator"
+	"github.com/dmatusiewicz/testing/facader"
 	"github.com/dmatusiewicz/testing/heaper"
 )
 
@@ -20,4 +21,7 @@ func main() {
 	compositer.Run()
 	fmt.Println()
 	decorator.Run()
+	fmt.Println()
+	facader.Run()
+
 }
